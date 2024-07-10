@@ -1,25 +1,56 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Routes } from "react-router-dom";
+import PastDayArticles from "./containers/PastDayArticles";
+import PastMonthArticles from "./containers/PastMonthArticles";
+import PastWeekArticles from './containers/PastWeekArticles'
+import Details from "./containers/Details";
+import Layout from "./components/Layout/Layout";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Layout>
+            <PastDayArticles />
+          </Layout>
+        }
+      />
+      <Route
+        path="/pastMonth"
+        element={
+          <Layout>
+            <PastMonthArticles />
+          </Layout>
+        }
+      />
+      <Route
+        path="/pastWeek"
+        element={
+          <Layout>
+            <PastWeekArticles />
+          </Layout>
+        }
+      />
+      <Route
+        path="/details"
+        element={
+          <Layout>
+            <Details />
+          </Layout>
+        }
+      />
+      <Route
+        path="*"
+        element={
+          <Layout>
+            <h1>404</h1>
+          </Layout>
+        }
+      />
+    </Routes>
   );
-}
+};
 
 export default App;
